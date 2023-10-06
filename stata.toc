@@ -1,0 +1,4 @@
+v 3
+d Koren, Miklós (maintainer)
+d https://github.com/codedthinking/eventstudy
+p eventstudy EVENTSTUDY - Correct Event Study After XTHDIDREGRESS

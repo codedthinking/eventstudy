@@ -1,0 +1,74 @@
+{smcl}
+
+
+{marker eventstudy-correct-event-study-after-xthdidregress}{...}
+{title:{cmd:eventstudy} Correct event study after {cmd:xthdidregress}}
+
+
+{marker syntax}{...}
+{title:Syntax}
+
+{text}{phang2}{cmd:eventstudy}, [{bf:pre}(#) {bf:post}(#) {bf:baseline}({it:string})]{p_end}
+
+
+{pstd}{cmd:eventstudy} transforms the coefficients estimated by {cmd:xthdidregress} into a correct event study relative to a baseline. The reported coefficients are the average treatment effects on the treated (ATT) for each period relative to the baseline. The baseline can be either the period before the treatment or the average of the pre-treatment periods.{p_end}
+
+{pstd}The package can be installed with{p_end}
+
+{phang2}{cmd}. net install eventstudy, from(https://raw.githubusercontent.com/codedthinking/eventstudy/main/)
+
+
+{marker options}{...}
+{title:Options}
+
+
+{marker options-1}{...}
+{dlgtab:Options}
+
+{synoptset tabbed}{...}
+{synopthdr:Option}
+{synoptline}
+{synopt:{bf:pre}}Number of periods before treatment to include in the estimation (default 1){p_end}
+{synopt:{bf:post}}Number of periods after treatment to include in the estimation (default 3){p_end}
+{synopt:{bf:baseline}}Either {cmd:-1} or {cmd:average}. If {cmd:-1}, the baseline is the period before the treatment. If {cmd:average}, the baseline is the average of the pre-treatment periods. Default is {cmd:-1}.{p_end}
+{synoptline}
+
+
+{marker background}{...}
+{dlgtab:Background}
+
+{pstd}{cmd:xthdidregress} returns ATET between {cmd:t} and {cmd:t-1} whenever {cmd:t} is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment.{p_end}
+
+
+{marker remarks}{...}
+{dlgtab:Remarks}
+
+{pstd}The command can only be run after {cmd:xthdidregress}.{p_end}
+
+{pstd}The command also returns, as part of {cmd:r()}, the coefficients and standard errors. See {cmd:return list} after running the command.{p_end}
+
+
+{marker examples}{...}
+{title:Examples}
+
+{phang2}{cmd}. use https://friosavila.github.io/playingwithstata/drdid/lalonde.dta, clear
+
+{phang2}{cmd}. xtset id year
+
+{phang2}{cmd}. xthdidregress ra (re) (experimental), group(id)
+eventstudy, pre(2) post(3) baseline(average)
+
+
+{marker authors}{...}
+{title:Authors}
+
+{text}{phang2}Miklós Koren (Central European University), {it:maintainer}{p_end}
+
+
+
+{marker license-and-citation}{...}
+{title:License and Citation}
+
+{pstd}You are free to use this package under the terms of its {browse "LICENSE":license}. If you use it, please cite {it:both} the original article and the software package in your work:{p_end}
+
+{text}{phang2}Koren, Miklós. 2023. "EVENTSTUDY: Correct Event Study After XTHDIDREGRESS. [software]" Available at {browse "https://github.com/codedthinking/eventstudy":https://github.com/codedthinking/eventstudy}.{p_end}
