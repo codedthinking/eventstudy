@@ -20,7 +20,7 @@ d KW: att
 d
 d Requires: Stata version 18
 d
-d Distribution-Date: 20231005
+d Distribution-Date: 20231006
 d
 
 f eventstudy.ado

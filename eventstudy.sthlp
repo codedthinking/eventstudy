@@ -30,7 +30,7 @@
 {synoptline}
 {synopt:{bf:pre}}Number of periods before treatment to include in the estimation (default 1){p_end}
 {synopt:{bf:post}}Number of periods after treatment to include in the estimation (default 3){p_end}
-{synopt:{bf:baseline}}Either {cmd:-1} or {cmd:average}. If {cmd:-1}, the baseline is the period before the treatment. If {cmd:average}, the baseline is the average of the pre-treatment periods. Default is {cmd:-1}.{p_end}
+{synopt:{bf:baseline}}Either a negative number between {cmd:-pre} and {cmd:-1} or {cmd:average}. If {cmd:-k}, the baseline is the kth period before the treatment. If {cmd:average}, the baseline is the average of the pre-treatment periods. Default is {cmd:-1}.{p_end}
 {synoptline}
 
 

@@ -1,4 +1,4 @@
-*! version 0.1.0 05oct2023
+*! version 0.2.0 06oct2023
 program eventstudy, rclass
     syntax [, pre(integer 1) post(integer 3) baseline(string)]
     display as text "Event study analysis"
@@ -9,12 +9,13 @@ program eventstudy, rclass
         local baseline "-1"
     }
     local T1 = `pre'-1
+    local K = `pre'+`post'+1
 
-    estat aggregation, dynamic(-`T1'/`post') 
+    quietly estat aggregation, dynamic(-`T1'/`post') 
     matrix bad_coef = r(b)
     matrix bad_Var = r(V)
 
-    matrix Wcum = I(`pre'+`post'+1)
+    matrix Wcum = I(`K')
     forvalues i = 1/`pre' {
         forvalues j = 1/`i' {
             matrix Wcum[`j', `i'] = -1.0
@@ -23,10 +24,14 @@ program eventstudy, rclass
     matrix Wcum = Wcum[1..., 1..`pre'-1], Wcum[1..., `pre'+1..`pre'+`post'+1]
 
     if ("`baseline'" == "average") {
-        matrix W0 = I(`pre'+`post'+1) - (J(`pre'+`post'+1, `pre', 1/`pre'), J(`pre'+`post'+1, `post'+1, 0))
+        matrix W0 = I(`K') - (J(`K', `pre', 1/`pre'), J(`K', `post'+1, 0))
     }
     else {
-        matrix W0 = I(`pre'+`post'+1)
+        matrix W0 = I(`K')
+        local bl = `pre' + `baseline' + 1
+        forvalues i = 1/`K' {
+            matrix W0[`i', `bl'] = W0[`i', `bl'] - 1.0
+        }
     }
     matrix b = bad_coef * Wcum' * W0'
     matrix V = W0 * Wcum * bad_Var * Wcum' * W0'
