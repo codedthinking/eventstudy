@@ -8,7 +8,7 @@ d
 d `eventstudy` transforms the coefficients estimated by `xthdidregress` into a correct
 d event study relative to a baseline. The reported coefficients are the average 
 d treatment effects on the treated (ATT) for each period relative to the baseline. 
-d The baseline can be either the period before the treatment or the average of the 
+d The baseline can be either a period before the treatment or the average of the 
 d pre-treatment periods.
 d
 d For details, see the website:
@@ -16,7 +16,6 @@ d https://github.com/codedthinking/eventstudy
 d
 d KW: treatment effects
 d KW: difference in differences
-d KW: att
 d
 d Requires: Stata version 18
 d
@@ -27,5 +26,4 @@ f eventstudy.ado
 f eventstudy.sthlp
 
 f LICENSE
-
-
+f testdata.dta

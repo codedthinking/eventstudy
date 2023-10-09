@@ -8,10 +8,10 @@
 {marker syntax}{...}
 {title:Syntax}
 
-{text}{phang2}{cmd:eventstudy}, [{bf:pre}(#) {bf:post}(#) {bf:baseline}({it:string})]{p_end}
+{text}{phang2}{cmd:eventstudy}, [{bf:pre}(#) {bf:post}(#) {bf:baseline}({it:string}) generate({it:name})]{p_end}
 
 
-{pstd}{cmd:eventstudy} transforms the coefficients estimated by {cmd:xthdidregress} into a correct event study relative to a baseline. The reported coefficients are the average treatment effects on the treated (ATT) for each period relative to the baseline. The baseline can be either the period before the treatment or the average of the pre-treatment periods.{p_end}
+{pstd}{cmd:eventstudy} transforms the coefficients estimated by {cmd:xthdidregress} into a correct event study relative to a baseline. The reported coefficients are the average treatment effects on the treated (ATT) for each period relative to the baseline. The baseline can be either a period before the treatment or the average of the pre-treatment periods.{p_end}
 
 {pstd}The package can be installed with{p_end}
 
@@ -31,17 +31,18 @@
 {synopt:{bf:pre}}Number of periods before treatment to include in the estimation (default 1){p_end}
 {synopt:{bf:post}}Number of periods after treatment to include in the estimation (default 3){p_end}
 {synopt:{bf:baseline}}Either a negative number between {cmd:-pre} and {cmd:-1} or {cmd:average}. If {cmd:-k}, the baseline is the kth period before the treatment. If {cmd:average}, the baseline is the average of the pre-treatment periods. Default is {cmd:-1}.{p_end}
+{synopt:{bf:generate} (optional)}Name of the frame to store the coefficients and their confidence interval.{p_end}
 {synoptline}
 
 
 {marker background}{...}
-{dlgtab:Background}
+{title:Background}
 
 {pstd}{cmd:xthdidregress} returns ATET between {cmd:t} and {cmd:t-1} whenever {cmd:t} is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment.{p_end}
 
 
 {marker remarks}{...}
-{dlgtab:Remarks}
+{title:Remarks}
 
 {pstd}The command can only be run after {cmd:xthdidregress}.{p_end}
 
@@ -51,12 +52,45 @@
 {marker examples}{...}
 {title:Examples}
 
-{phang2}{cmd}. use https://friosavila.github.io/playingwithstata/drdid/lalonde.dta, clear
+{phang2}{cmd}. . use testdata
 
-{phang2}{cmd}. xtset id year
+. xthdidregress ra (y) (treatment), group(group)
 
-{phang2}{cmd}. xthdidregress ra (re) (experimental), group(id)
-eventstudy, pre(2) post(3) baseline(average)
+. eventstudy, pre(3) post(3) baseline(-3) generate(eventstudy)
+
+Event study relative to -3              Number of obs    = 800
+                                        Number of panels = 100
+
+                                (Std. err. adjusted for 100 clusters in group)
+------------------------------------------------------------------------------
+             |               Robust
+             |       ATET   std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+          -3 |          0  (omitted)
+          -2 |   .0927541   .0149854     6.19   0.000     .0633833    .1221249
+          -1 |   .2026121   .0123289    16.43   0.000     .1784478    .2267764
+           0 |   .5125657   .0143483    35.72   0.000     .4844435    .5406879
+           1 |   .6146663   .0158062    38.89   0.000     .5836867     .645646
+           2 |   .7274315   .0196456    37.03   0.000     .6889267    .7659362
+           3 |   .8197896   .0194226    42.21   0.000     .7817219    .8578572
+------------------------------------------------------------------------------
+
+. frame eventstudy: list
+
+     +---------------------------------------+
+     | time       coef      lower      upper |
+     |---------------------------------------|
+  1. |   -3          0          0          0 |
+  2. |   -2   .0927541   .0936938   .0918144 |
+  3. |   -1   .2026121   .2033852    .201839 |
+  4. |    0   .5125657   .5134655   .5116659 |
+  5. |    1   .6146663   .6156575   .6136752 |
+     |---------------------------------------|
+  6. |    2   .7274315   .7286634   .7261996 |
+  7. |    3   .8197896   .8210075   .8185716 |
+     +---------------------------------------+
+
+. frame eventstudy: line upper coef lower time, sort
 
 
 {marker authors}{...}
