@@ -1,4 +1,4 @@
-*! version 0.3.0 09oct2023
+*! version 0.3.1 09oct2023
 program eventstudy, rclass
     syntax [, pre(integer 1) post(integer 3) baseline(string) generate(string)]
 	if ("`level'" == "") {
@@ -68,6 +68,8 @@ program eventstudy, rclass
             scalar `upper' = b[1, `i'] + invnormal(`level'/200) * sqrt(V[`i', `i'])
             frame post `generate' (`t') (`coef') (`lower') (`upper')
         }
+        frame `generate': tsset time
+        frame `generate': format coef lower upper %9.3f
     }
 
     return matrix b = b

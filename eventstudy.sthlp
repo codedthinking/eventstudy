@@ -8,7 +8,7 @@
 {marker syntax}{...}
 {title:Syntax}
 
-{text}{phang2}{cmd:eventstudy}, [{bf:pre}(#) {bf:post}(#) {bf:baseline}({it:string}) generate({it:name})]{p_end}
+{text}{phang2}{cmd:eventstudy}, [{bf:pre}(#) {bf:post}(#) {bf:baseline}({it:string}) {bf:generate}({it:name})]{p_end}
 
 
 {pstd}{cmd:eventstudy} transforms the coefficients estimated by {cmd:xthdidregress} into a correct event study relative to a baseline. The reported coefficients are the average treatment effects on the treated (ATT) for each period relative to the baseline. The baseline can be either a period before the treatment or the average of the pre-treatment periods.{p_end}
@@ -48,6 +48,16 @@
 
 {pstd}The command also returns, as part of {cmd:r()}, the coefficients and standard errors. See {cmd:return list} after running the command.{p_end}
 
+{pstd}If the {cmd:generate} option is used, the returned frame contains the following variables:{p_end}
+
+{text}{phang2}{cmd:time}: the time period relative to the baseline{p_end}
+{phang2}{cmd:coef}: the estimated coefficient{p_end}
+{phang2}{cmd:lower}: the lower bound of the 95% confidence interval{p_end}
+{phang2}{cmd:upper}: the upper bound of the 95% confidence interval{p_end}
+
+
+{pstd}The frame is {cmd:tsset} by {cmd:time}, so {cmd:tsline} can be used to plot the event study.{p_end}
+
 
 {marker examples}{...}
 {title:Examples}
@@ -77,20 +87,20 @@ Event study relative to -3              Number of obs    = 800
 
 . frame eventstudy: list
 
-     +---------------------------------------+
-     | time       coef      lower      upper |
-     |---------------------------------------|
-  1. |   -3          0          0          0 |
-  2. |   -2   .0927541   .0936938   .0918144 |
-  3. |   -1   .2026121   .2033852    .201839 |
-  4. |    0   .5125657   .5134655   .5116659 |
-  5. |    1   .6146663   .6156575   .6136752 |
-     |---------------------------------------|
-  6. |    2   .7274315   .7286634   .7261996 |
-  7. |    3   .8197896   .8210075   .8185716 |
-     +---------------------------------------+
+     +------------------------------+
+     | time    coef   lower   upper |
+     |------------------------------|
+  1. |   -3   0.000   0.000   0.000 |
+  2. |   -2   0.093   0.094   0.092 |
+  3. |   -1   0.203   0.203   0.202 |
+  4. |    0   0.513   0.513   0.512 |
+  5. |    1   0.615   0.616   0.614 |
+     |------------------------------|
+  6. |    2   0.727   0.729   0.726 |
+  7. |    3   0.820   0.821   0.819 |
+     +------------------------------+
 
-. frame eventstudy: line upper coef lower time, sort
+. frame eventstudy: tsline upper coef lower
 
 
 {marker authors}{...}

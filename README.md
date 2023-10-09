@@ -2,7 +2,7 @@
 
 # Syntax
 
-- `eventstudy`, [**pre**(#) **post**(#) **baseline**(*string*) generate(*name*)]
+- `eventstudy`, [**pre**(#) **post**(#) **baseline**(*string*) **generate**(*name*)]
 
 `eventstudy` transforms the coefficients estimated by `xthdidregress` into a correct event study relative to a baseline. The reported coefficients are the average treatment effects on the treated (ATT) for each period relative to the baseline. The baseline can be either a period before the treatment or the average of the pre-treatment periods.
 
@@ -29,6 +29,13 @@ The command can only be run after `xthdidregress`.
 
 The command also returns, as part of `r()`, the coefficients and standard errors. See `return list` after running the command.
 
+If the `generate` option is used, the returned frame contains the following variables:
+- `time`: the time period relative to the baseline
+- `coef`: the estimated coefficient
+- `lower`: the lower bound of the 95% confidence interval
+- `upper`: the upper bound of the 95% confidence interval
+
+The frame is `tsset` by `time`, so `tsline` can be used to plot the event study.
 
 # Examples
 ```
@@ -57,20 +64,20 @@ Event study relative to -3              Number of obs    = 800
 
 . frame eventstudy: list
 
-     +---------------------------------------+
-     | time       coef      lower      upper |
-     |---------------------------------------|
-  1. |   -3          0          0          0 |
-  2. |   -2   .0927541   .0936938   .0918144 |
-  3. |   -1   .2026121   .2033852    .201839 |
-  4. |    0   .5125657   .5134655   .5116659 |
-  5. |    1   .6146663   .6156575   .6136752 |
-     |---------------------------------------|
-  6. |    2   .7274315   .7286634   .7261996 |
-  7. |    3   .8197896   .8210075   .8185716 |
-     +---------------------------------------+
+     +------------------------------+
+     | time    coef   lower   upper |
+     |------------------------------|
+  1. |   -3   0.000   0.000   0.000 |
+  2. |   -2   0.093   0.094   0.092 |
+  3. |   -1   0.203   0.203   0.202 |
+  4. |    0   0.513   0.513   0.512 |
+  5. |    1   0.615   0.616   0.614 |
+     |------------------------------|
+  6. |    2   0.727   0.729   0.726 |
+  7. |    3   0.820   0.821   0.819 |
+     +------------------------------+
 
-. frame eventstudy: line upper coef lower time, sort
+. frame eventstudy: tsline upper coef lower
 ```
 
 
