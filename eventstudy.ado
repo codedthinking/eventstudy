@@ -1,4 +1,4 @@
-*! version 0.3.1 09oct2023
+*! version 0.4.0 13oct2023
 program eventstudy, rclass
     syntax [, pre(integer 1) post(integer 3) baseline(string) generate(string)]
 	if ("`level'" == "") {

@@ -1,3 +1,22 @@
+---
+author: Koren, Miklós (https://koren.mk)
+date: 2023-10-13
+version: 0.4.0
+title: EVENTSTUDY - Correct Event Study After XTHDIDREGRESS
+description: |
+    `eventstudy` transforms the coefficients estimated by `xthdidregress` into a correct
+    event study relative to a baseline. The reported coefficients are the average 
+    treatment effects on the treated (ATT) for each period relative to the baseline. 
+    The baseline can be either a period before the treatment or the average of the 
+    pre-treatment periods.
+url: https://github.com/codedthinking/eventstudy
+requires: Stata version 18
+files: 
+    - eventstudy.ado
+    - eventstudy.sthlp
+    - LICENSE
+    - testdata.dta 
+---
 # `eventstudy` Correct event study after `xthdidregress`
 
 # Syntax
