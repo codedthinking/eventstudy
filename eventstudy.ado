@@ -1,6 +1,6 @@
 *! version 0.4.0 13oct2023
 program eventstudy, rclass
-    syntax [, pre(integer 1) post(integer 3) baseline(string) generate(string)]
+    syntax [, pre(integer 1) post(integer 3) baseline(string) generate(string) level(real 95)]
 	if ("`level'" == "") {
 		local level 95
 	}    
@@ -25,6 +25,9 @@ program eventstudy, rclass
     if ("`baseline'" == "average") {
         matrix W0 = I(`K') - (J(`K', `pre', 1/`pre'), J(`K', `post'+1, 0))
     }
+    else if ("`baseline'" == "atet") {
+        matrix W0 = (J(1, `pre', -1/`pre'), J(1, `post'+1, 1/(`post'+1)))
+    }
     else {
         if (!inrange(`baseline', -`pre', -1)) {
             display in red "Baseline must be between -`pre' and -1"
@@ -39,9 +42,14 @@ program eventstudy, rclass
     matrix b = bad_coef * Wcum' * W0'
     matrix V = W0 * Wcum * bad_Var * Wcum' * W0'
 
-    * label coefficients
-    forvalues t = -`pre'/`post' {
-        local colnames `colnames' `t'
+    if ("`baseline'" == "atet") {
+        local colnames "ATET"
+    }
+    else {
+        * label coefficients
+        forvalues t = -`pre'/`post' {
+            local colnames `colnames' `t'
+        }
     }
     matrix colname b = `colnames'
     matrix colname V = `colnames'

@@ -37,7 +37,7 @@ Option | Description
 -------|------------
 **pre** | Number of periods before treatment to include in the estimation (default 1)
 **post** | Number of periods after treatment to include in the estimation (default 3)
-**baseline** | Either a negative number between `-pre` and `-1` or `average`. If `-k`, the baseline is the kth period before the treatment. If `average`, the baseline is the average of the pre-treatment periods. Default is `-1`.
+**baseline** | Either a negative number between `-pre` and `-1` or `average`, or `atet`. If `-k`, the baseline is the kth period before the treatment. If `average`, the baseline is the average of the pre-treatment periods. If `atet`, the regression table reports the average of the post-treatment periods minus the average of the pre-treatment periods. Default is `-1`.
 **generate** (optional) | Name of the frame to store the coefficients and their confidence interval.
 
 # Background

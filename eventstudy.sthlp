@@ -30,7 +30,7 @@
 {synoptline}
 {synopt:{bf:pre}}Number of periods before treatment to include in the estimation (default 1){p_end}
 {synopt:{bf:post}}Number of periods after treatment to include in the estimation (default 3){p_end}
-{synopt:{bf:baseline}}Either a negative number between {cmd:-pre} and {cmd:-1} or {cmd:average}. If {cmd:-k}, the baseline is the kth period before the treatment. If {cmd:average}, the baseline is the average of the pre-treatment periods. Default is {cmd:-1}.{p_end}
+{synopt:{bf:baseline}}Either a negative number between {cmd:-pre} and {cmd:-1} or {cmd:average}, or {cmd:atet}. If {cmd:-k}, the baseline is the kth period before the treatment. If {cmd:average}, the baseline is the average of the pre-treatment periods. If {cmd:atet}, the regression table reports the average of the post-treatment periods minus the average of the pre-treatment periods. Default is {cmd:-1}.{p_end}
 {synopt:{bf:generate} (optional)}Name of the frame to store the coefficients and their confidence interval.{p_end}
 {synoptline}
 
