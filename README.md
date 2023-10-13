@@ -97,6 +97,19 @@ Event study relative to -3              Number of obs    = 800
      +------------------------------+
 
 . frame eventstudy: tsline upper coef lower
+
+. eventstudy, pre(3) post(3) baseline(atet)
+
+Event study relative to atet            Number of obs    = 800
+                                        Number of panels = 100
+
+                                (Std. err. adjusted for 100 clusters in group)
+------------------------------------------------------------------------------
+             |               Robust
+             |       ATET   std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        ATET |   .5701579   .0094833    60.12   0.000      .551571    .5887447
+------------------------------------------------------------------------------
 ```
 
 
