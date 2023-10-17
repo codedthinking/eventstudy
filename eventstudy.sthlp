@@ -91,41 +91,43 @@ Event study relative to -3              Number of obs    = 800
      | time    coef   lower   upper |
      |------------------------------|
   1. |   -3   0.000   0.000   0.000 |
-  2. |   -2   0.093   0.094   0.092 |
-  3. |   -1   0.203   0.203   0.202 |
-  4. |    0   0.513   0.513   0.512 |
-  5. |    1   0.615   0.616   0.614 |
+  2. |   -2   0.093   0.063   0.122 |
+  3. |   -1   0.203   0.178   0.227 |
+  4. |    0   0.513   0.484   0.541 |
+  5. |    1   0.615   0.584   0.646 |
      |------------------------------|
-  6. |    2   0.727   0.729   0.726 |
-  7. |    3   0.820   0.821   0.819 |
+  6. |    2   0.727   0.689   0.766 |
+  7. |    3   0.820   0.782   0.858 |
      +------------------------------+
 
 . frame eventstudy: tsline upper coef lower
 
-. eventstudy, pre(3) post(3) baseline(atet)
-
-Event study relative to atet            Number of obs    = 800
-                                        Number of panels = 100
-
-                                (Std. err. adjusted for 100 clusters in group)
-------------------------------------------------------------------------------
-             |               Robust
-             |       ATET   std. err.      z    P>|z|     [95% conf. interval]
--------------+----------------------------------------------------------------
-        ATET |   .5701579   .0094833    60.12   0.000      .551571    .5887447
-------------------------------------------------------------------------------
 
 
-{marker authors}{...}
-{title:Authors}
+{phang2}{cmd}. 
 
-{text}{phang2}Miklós Koren (Central European University), {it:maintainer}{p_end}
+{pstd}. eventstudy, pre(3) post(3) baseline(atet){p_end}
+
+{pstd}Event study relative to atet Number of obs = 800Number of panels = 100{p_end}
+
+{phang2}{cmd}.                             (Std. err. adjusted for 100 clusters in group)
+
+{hline}
+
+{phang2}{cmd}.          |               Robust
+         |       ATET   std. err.      z    P>|z|     [95% conf. interval]
 
 
+{marker ------------------------------------------------------------------------------atet--5701579-0094833-6012-0000-551571-5887447}{...}
+{dlgtab:-------------+----------------------------------------------------------------ATET | .5701579 .0094833 60.12 0.000 .551571 .5887447}
 
-{marker license-and-citation}{...}
-{title:License and Citation}
+{phang2}{cmd}. 
 
-{pstd}You are free to use this package under the terms of its {browse "LICENSE":license}. If you use it, please cite {it:both} the original article and the software package in your work:{p_end}
 
-{text}{phang2}Koren, Miklós. 2023. "EVENTSTUDY: Correct Event Study After XTHDIDREGRESS. [software]" Available at {browse "https://github.com/codedthinking/eventstudy":https://github.com/codedthinking/eventstudy}.{p_end}
+# Authors
+- Miklós Koren (Central European University), *maintainer*
+
+# License and Citation
+You are free to use this package under the terms of its [license](LICENSE). If you use it, please cite *both* the original article and the software package in your work:
+
+- Koren, Miklós. 2023. "EVENTSTUDY: Correct Event Study After XTHDIDREGRESS. [software]" Available at https://github.com/codedthinking/eventstudy.
