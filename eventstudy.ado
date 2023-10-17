@@ -1,4 +1,4 @@
-*! version 0.4.0 13oct2023
+*! version 0.4.1 17oct2023
 program eventstudy, rclass
     syntax [, pre(integer 1) post(integer 3) baseline(string) generate(string) level(real 95)]
 	if ("`level'" == "") {
@@ -72,8 +72,8 @@ program eventstudy, rclass
         forvalues t = -`pre'/`post' {
             local i = `t' + `pre' + 1
             scalar `coef' = b[1, `i']
-            scalar `lower' = b[1, `i'] - invnormal(`level'/200) * sqrt(V[`i', `i'])
-            scalar `upper' = b[1, `i'] + invnormal(`level'/200) * sqrt(V[`i', `i'])
+            scalar `lower' = b[1, `i'] - invnormal((100-`level')/200) * sqrt(V[`i', `i'])
+            scalar `upper' = b[1, `i'] + invnormal((100-`level')/200) * sqrt(V[`i', `i'])
             frame post `generate' (`t') (`coef') (`lower') (`upper')
         }
         frame `generate': tsset time

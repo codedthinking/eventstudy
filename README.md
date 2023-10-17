@@ -1,7 +1,7 @@
 ---
 author: Koren, Miklós (https://koren.mk)
-date: 2023-10-13
-version: 0.4.0
+date: 2023-10-17
+version: 0.4.1
 title: EVENTSTUDY - Correct Event Study After XTHDIDREGRESS
 description: |
     `eventstudy` transforms the coefficients estimated by `xthdidregress` into a correct
