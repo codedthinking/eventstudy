@@ -102,7 +102,6 @@ Event study relative to -3              Number of obs    = 800
 ![](tsline.png)
 
 ```
-```
 . eventstudy, pre(3) post(3) baseline(atet)
 
 Event study relative to atet            Number of obs    = 800

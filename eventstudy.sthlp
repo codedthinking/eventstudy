@@ -104,30 +104,30 @@ Event study relative to -3              Number of obs    = 800
 
 
 
-{phang2}{cmd}. 
+{phang2}{cmd}. . eventstudy, pre(3) post(3) baseline(atet)
 
-{pstd}. eventstudy, pre(3) post(3) baseline(atet){p_end}
+Event study relative to atet            Number of obs    = 800
+                                        Number of panels = 100
 
-{pstd}Event study relative to atet Number of obs = 800Number of panels = 100{p_end}
-
-{phang2}{cmd}.                             (Std. err. adjusted for 100 clusters in group)
-
-{hline}
-
-{phang2}{cmd}.          |               Robust
-         |       ATET   std. err.      z    P>|z|     [95% conf. interval]
-
-
-{marker ------------------------------------------------------------------------------atet--5701579-0094833-6012-0000-551571-5887447}{...}
-{dlgtab:-------------+----------------------------------------------------------------ATET | .5701579 .0094833 60.12 0.000 .551571 .5887447}
-
-{phang2}{cmd}. 
+                                (Std. err. adjusted for 100 clusters in group)
+------------------------------------------------------------------------------
+             |               Robust
+             |       ATET   std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        ATET |   .5701579   .0094833    60.12   0.000      .551571    .5887447
+------------------------------------------------------------------------------
 
 
-# Authors
-- Miklós Koren (Central European University), *maintainer*
+{marker authors}{...}
+{title:Authors}
 
-# License and Citation
-You are free to use this package under the terms of its [license](LICENSE). If you use it, please cite *both* the original article and the software package in your work:
+{text}{phang2}Miklós Koren (Central European University), {it:maintainer}{p_end}
 
-- Koren, Miklós. 2023. "EVENTSTUDY: Correct Event Study After XTHDIDREGRESS. [software]" Available at https://github.com/codedthinking/eventstudy.
+
+
+{marker license-and-citation}{...}
+{title:License and Citation}
+
+{pstd}You are free to use this package under the terms of its {browse "LICENSE":license}. If you use it, please cite {it:both} the original article and the software package in your work:{p_end}
+
+{text}{phang2}Koren, Miklós. 2023. "EVENTSTUDY: Correct Event Study After XTHDIDREGRESS. [software]" Available at {browse "https://github.com/codedthinking/eventstudy":https://github.com/codedthinking/eventstudy}.{p_end}
