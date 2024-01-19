@@ -11,6 +11,7 @@ program eventstudy, eclass
     local K = `pre'+`post'+1
 
     local Nobs = e(N)
+    local depvar = e(depvar)
     tempname bad_coef bad_Var Wcum W0 b V
     tempvar esample
     generate `esample' = e(sample)
@@ -64,7 +65,7 @@ program eventstudy, eclass
     _coef_table_header, title(Event study relative to `baseline') width(62)
 	display
 	_coef_table, bmat(`b') vmat(`V') level(`level') 	///
-		depname("Event time") coeftitle(ATET)
+		depname(`depvar') coeftitle(ATET)
 
     tempname coef lower upper
     if ("`generate'" != "") {
@@ -82,6 +83,7 @@ program eventstudy, eclass
     }
 
 	ereturn post `b' `V', obs(`Nobs') esample(`esample')
+    ereturn local depvar `depvar'
 	ereturn local cmd eventstudy
 	ereturn local cmdline eventstudy `0'
 
