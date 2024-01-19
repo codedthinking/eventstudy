@@ -38,7 +38,7 @@
 {marker background}{...}
 {title:Background}
 
-{pstd}{cmd:xthdidregress} returns ATET between {cmd:t} and {cmd:t-1} whenever {cmd:t} is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment.{p_end}
+{pstd}{cmd:xthdidregress} returns ATET between {cmd:t} and {cmd:t-1} whenever {cmd:t} is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment. This can lead to misleading event study plots. The {cmd:eventstudy} command transforms the coefficients into a correct event study relative to a baseline.{p_end}
 
 
 {marker remarks}{...}
@@ -46,7 +46,7 @@
 
 {pstd}The command can only be run after {cmd:xthdidregress}.{p_end}
 
-{pstd}The command also returns, as part of {cmd:r()}, the coefficients and standard errors. See {cmd:return list} after running the command.{p_end}
+{pstd}The command also returns, as part of {cmd:e()}, the coefficients and standard errors. See {cmd:ereturn list} after running the command. Typical post-estimation commands can be used, such as {cmd:outreg2} or {cmd:estout}.{p_end}
 
 {pstd}If the {cmd:generate} option is used, the returned frame contains the following variables:{p_end}
 
@@ -130,4 +130,4 @@ Event study relative to atet            Number of obs    = 800
 
 {pstd}You are free to use this package under the terms of its {browse "LICENSE":license}. If you use it, please cite {it:both} the original article and the software package in your work:{p_end}
 
-{text}{phang2}Koren, Miklós. 2023. "EVENTSTUDY: Correct Event Study After XTHDIDREGRESS. [software]" Available at {browse "https://github.com/codedthinking/eventstudy":https://github.com/codedthinking/eventstudy}.{p_end}
+{text}{phang2}Koren, Miklós. 2024. "EVENTSTUDY: Correct Event Study After XTHDIDREGRESS. [software]" Available at {browse "https://github.com/codedthinking/eventstudy":https://github.com/codedthinking/eventstudy}.{p_end}

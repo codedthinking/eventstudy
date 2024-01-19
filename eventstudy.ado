@@ -1,5 +1,5 @@
-*! version 0.4.1 17oct2023
-program eventstudy, rclass
+*! version 0.5.0 19jan2024
+program eventstudy, eclass
     syntax [, pre(integer 1) post(integer 3) baseline(string) generate(string) level(real 95)]
 	if ("`level'" == "") {
 		local level 95
@@ -9,6 +9,11 @@ program eventstudy, rclass
     }   
     local T1 = `pre'-1
     local K = `pre'+`post'+1
+
+    local Nobs = e(N)
+    tempvar esample
+    generate `esample' = e(sample)
+    * FIXME: this will have to be reduced for event window
 
     quietly estat aggregation, dynamic(-`T1'/`post') 
     matrix bad_coef = r(b)
@@ -80,8 +85,9 @@ program eventstudy, rclass
         frame `generate': format coef lower upper %9.3f
     }
 
-    return matrix b = b
-    return matrix V = V
+	ereturn post b V, obs(`Nobs') esample(`esample')
+	ereturn local cmd eventstudy
+	ereturn local cmdline eventstudy `0'
 
 end
 

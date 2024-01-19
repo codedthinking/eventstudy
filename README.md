@@ -1,7 +1,7 @@
 ---
 author: Koren, Miklós (https://koren.mk)
-date: 2023-10-17
-version: 0.4.1
+date: 2024-01-19
+version: 0.5.0
 title: EVENTSTUDY - Correct Event Study After XTHDIDREGRESS
 description: |
     `eventstudy` transforms the coefficients estimated by `xthdidregress` into a correct
@@ -41,12 +41,12 @@ Option | Description
 **generate** (optional) | Name of the frame to store the coefficients and their confidence interval.
 
 # Background
-`xthdidregress` returns ATET between `t` and `t-1` whenever `t` is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment. 
+`xthdidregress` returns ATET between `t` and `t-1` whenever `t` is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment. This can lead to misleading event study plots. The `eventstudy` command transforms the coefficients into a correct event study relative to a baseline.
 
 # Remarks
 The command can only be run after `xthdidregress`. 
 
-The command also returns, as part of `r()`, the coefficients and standard errors. See `return list` after running the command.
+The command also returns, as part of `e()`, the coefficients and standard errors. See `ereturn list` after running the command. Typical post-estimation commands can be used, such as `outreg2` or `estout`.
 
 If the `generate` option is used, the returned frame contains the following variables:
 - `time`: the time period relative to the baseline
@@ -124,4 +124,4 @@ Event study relative to atet            Number of obs    = 800
 # License and Citation
 You are free to use this package under the terms of its [license](LICENSE). If you use it, please cite *both* the original article and the software package in your work:
 
-- Koren, Miklós. 2023. "EVENTSTUDY: Correct Event Study After XTHDIDREGRESS. [software]" Available at https://github.com/codedthinking/eventstudy.
+- Koren, Miklós. 2024. "EVENTSTUDY: Correct Event Study After XTHDIDREGRESS. [software]" Available at https://github.com/codedthinking/eventstudy.
