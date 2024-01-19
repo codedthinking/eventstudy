@@ -31,11 +31,31 @@ d {{url}}
 p {{command}} {{title}}
 '''
 
+citation_template = '''
+cff-version: 1.2.0
+title: {{title}}
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: 
+    family-names: '{{author}}'
+identifiers:
+  - type: url
+    value: '{{url}}'
+version: {{version}}
+date-released: '{{date}}'
+'''
+
 def render_pkg(config):
     return jinja2.Template(pkg_template).render(config)
 
 def render_toc(config):
     return jinja2.Template(toc_template).render(config)
+
+def render_citation(config):
+    return jinja2.Template(citation_template).render(config)
 
 def stata_date(dt: datetime.date):
     return f'{dt.year}{dt.month:02}{dt.day:02}'
@@ -62,6 +82,8 @@ if __name__ == '__main__':
         f.write(render_pkg(config))
     with open(f'stata.toc', 'wt') as f:
         f.write(render_toc(config))
+    with open('CITATION.cff', 'wt') as f:
+        f.write(render_citation(config))
     with open(f'{command}.ado', 'wt') as f:
         f.write(replace_version(config, adotext))
 
