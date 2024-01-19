@@ -1,4 +1,4 @@
-*! version 0.5.0 19jan2024
+*! version 0.5.2 19jan2024
 program eventstudy, eclass
     syntax [, pre(integer 1) post(integer 3) baseline(string) generate(string) level(real 95)]
 	if ("`level'" == "") {
@@ -7,6 +7,10 @@ program eventstudy, eclass
     if ("`baseline'" == "") {
         local baseline "-1"
     }   
+    if (e(cmd) != "xthdidregress") {
+        display in red "eventstudy can only be used after xthdidregress"
+        error 198
+    }
     local T1 = `pre'-1
     local K = `pre'+`post'+1
 
