@@ -1,7 +1,7 @@
 ---
 author: Koren, Miklós (https://koren.mk)
-date: 2024-01-19
-version: 0.5.2
+date: 2024-01-22
+version: 0.5.3
 title: EVENTSTUDY - Correct Event Study After XTHDIDREGRESS
 description: |
     `eventstudy` transforms the coefficients estimated by `xthdidregress` into a correct
@@ -64,13 +64,13 @@ The frame is `tsset` by `time`, so `tsline` can be used to plot the event study.
 
 . eventstudy, pre(3) post(3) baseline(-3) generate(eventstudy)
 
-Event study relative to -3              Number of obs    = 800
-                                        Number of panels = 100
+Time variable: time, -3 to 3
+        Delta: 1 unit
 
-                                (Std. err. adjusted for 100 clusters in group)
+Event study relative to -3                 Number of obs = 662
+
 ------------------------------------------------------------------------------
-             |               Robust
-             |       ATET   std. err.      z    P>|z|     [95% conf. interval]
+           y |       ATET   Std. err.      z    P>|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
           -3 |          0  (omitted)
           -2 |   .0927541   .0149854     6.19   0.000     .0633833    .1221249
@@ -102,15 +102,14 @@ Event study relative to -3              Number of obs    = 800
 ![](tsline.png)
 
 ```
+. xthdidregress ra (y) (treatment), group(group)
+
 . eventstudy, pre(3) post(3) baseline(atet)
 
-Event study relative to atet            Number of obs    = 800
-                                        Number of panels = 100
+Event study relative to atet               Number of obs = 662
 
-                                (Std. err. adjusted for 100 clusters in group)
 ------------------------------------------------------------------------------
-             |               Robust
-             |       ATET   std. err.      z    P>|z|     [95% conf. interval]
+           y |       ATET   Std. err.      z    P>|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
         ATET |   .5701579   .0094833    60.12   0.000      .551571    .5887447
 ------------------------------------------------------------------------------

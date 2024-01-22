@@ -11,5 +11,5 @@ authors:
 identifiers:
   - type: url
     value: 'https://github.com/codedthinking/eventstudy'
-version: 0.5.2
-date-released: '2024-01-19'
+version: 0.5.3
+date-released: '2024-01-22'

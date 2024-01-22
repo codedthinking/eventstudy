@@ -1,4 +1,4 @@
-*! version 0.5.2 19jan2024
+*! version 0.5.3 22jan2024
 program eventstudy, eclass
     syntax [, pre(integer 1) post(integer 3) baseline(string) generate(string) level(real 95)]
 	if ("`level'" == "") {
@@ -14,12 +14,17 @@ program eventstudy, eclass
     local T1 = `pre'-1
     local K = `pre'+`post'+1
 
-    local Nobs = e(N)
     local depvar = e(depvar)
-    tempname bad_coef bad_Var Wcum W0 b V
-    tempvar esample
-    generate `esample' = e(sample)
-    * FIXME: this will have to be reduced for event window
+    local cohortvar = e(cohortvar)
+    local timevar = e(timevar)
+    tempname bad_coef bad_Var Wcum W0 b V Nobs
+
+    tempvar exclude esample
+    * exclude observations outside of the event window
+    quietly generate `exclude' = cond(`cohortvar' == 0, 0, !inrange(`timevar' - `cohortvar', -`pre', `post'))
+    quietly generate `esample' = e(sample) & (`exclude' == 0)
+    quietly count if `esample'
+    local Nobs = r(N)
 
     quietly estat aggregation, dynamic(-`T1'/`post') 
     matrix `bad_coef' = r(b)
@@ -66,11 +71,6 @@ program eventstudy, eclass
     matrix colname `V' = `colnames'
     matrix rowname `V' = `colnames'
 
-    _coef_table_header, title(Event study relative to `baseline') width(62)
-	display
-	_coef_table, bmat(`b') vmat(`V') level(`level') 	///
-		depname(`depvar') coeftitle(ATET)
-
     tempname coef lower upper
     if ("`generate'" != "") {
         capture frame drop `generate'
@@ -90,6 +90,11 @@ program eventstudy, eclass
     ereturn local depvar `depvar'
 	ereturn local cmd eventstudy
 	ereturn local cmdline eventstudy `0'
+
+    _coef_table_header, title(Event study relative to `baseline') width(62)
+	display
+	_coef_table, bmat(e(b)) vmat(e(V)) level(`level') 	///
+		depname(`depvar') coeftitle(ATET)
 
 end
 
