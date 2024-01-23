@@ -15,7 +15,11 @@
 
 {pstd}The package can be installed with{p_end}
 
-{phang2}{cmd}. net install eventstudy, from(https://raw.githubusercontent.com/codedthinking/eventstudy/main/)
+{phang2}{cmd}. net install eventbaseline, from(https://raw.githubusercontent.com/codedthinking/eventbaseline/main/)
+
+{pstd}If you require a specific version, use{p_end}
+
+{phang2}{cmd}. net install eventbaseline, from(https://github.com/korenmiklos/codedthinking/eventbaseline/raw/v0.6.0/)
 
 
 {marker options}{...}
@@ -131,7 +135,7 @@ Event study relative to atet             Number of obs = 1,850
 
 {pstd}You are free to use this package under the terms of its {browse "LICENSE":license}. If you use it, please the software package in your work:{p_end}
 
-{text}{phang2}Koren, Miklós. 2024. "EVENTBASELINE: Correct Event Study After XTHDIDREGRESS. [software]" Available at {browse "https://github.com/codedthinking/eventstudy":https://github.com/codedthinking/eventstudy}.{p_end}
+{text}{phang2}Koren, Miklós. 2024. "EVENTBASELINE: Correct Event Study After XTHDIDREGRESS. [software]" Available at {browse "https://github.com/codedthinking/eventbaseline":https://github.com/codedthinking/eventbaseline}.{p_end}
 
 
 
