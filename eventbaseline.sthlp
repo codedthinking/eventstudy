@@ -139,4 +139,4 @@ Event study relative to atet             Number of obs = 1,850
 {title:References}
 
 {text}{phang2}Roth, Jonathan. 2024a. "Interpreting Event-Studies from Recent Difference-in-Differences Methods." Available at {browse "https://www.jonathandroth.com/assets/files/HetEventStudies.pdf":https://www.jonathandroth.com/assets/files/HetEventStudies.pdf}. Last accessed January 23, 2024.{p_end}
-{phang2}Roth, Jonathab. 2024b. "Test Data for >Interpreting Event-Studies from Recent Difference-in-Differences Methods< [data set]." Available at {browse "https://github.com/jonathandroth/HetEventStudies/raw/master/output/df.dta":https://github.com/jonathandroth/HetEventStudies/raw/master/output/df.dta} Last accessed January 23, 2024.{p_end}
+{phang2}Roth, Jonathan. 2024b. "Test Data for >Interpreting Event-Studies from Recent Difference-in-Differences Methods< [data set]." Available at {browse "https://github.com/jonathandroth/HetEventStudies/raw/master/output/df.dta":https://github.com/jonathandroth/HetEventStudies/raw/master/output/df.dta} Last accessed January 23, 2024.{p_end}

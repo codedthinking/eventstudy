@@ -121,4 +121,4 @@ You are free to use this package under the terms of its [license](LICENSE). If y
 
 # References
 - Roth, Jonathan. 2024a. "Interpreting Event-Studies from Recent Difference-in-Differences Methods." Available at https://www.jonathandroth.com/assets/files/HetEventStudies.pdf. Last accessed January 23, 2024.
-- Roth, Jonathab. 2024b. "Test Data for >Interpreting Event-Studies from Recent Difference-in-Differences Methods< [data set]." Available at https://github.com/jonathandroth/HetEventStudies/raw/master/output/df.dta Last accessed January 23, 2024.
+- Roth, Jonathan. 2024b. "Test Data for >Interpreting Event-Studies from Recent Difference-in-Differences Methods< [data set]." Available at https://github.com/jonathandroth/HetEventStudies/raw/master/output/df.dta Last accessed January 23, 2024.
