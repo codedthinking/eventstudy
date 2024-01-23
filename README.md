@@ -1,11 +1,11 @@
 ---
 author: Koren, Miklós (https://koren.mk)
 date: 2024-01-23
-version: 0.6.0
+version: 0.6.1
 title: EVENTBASELINE - Correct Event Study After XTHDIDREGRESS
 description: |
     `eventbaseline` transforms the coefficients estimated by `xthdidregress` into a correct event study relative to a baseline. The reported coefficients are the average treatment effects on the treated (ATT) for each period relative to the baseline. The baseline can be either a period before the treatment or the average of the pre-treatment periods.
-url: https://github.com/codedthinking/eventstudy
+url: https://github.com/codedthinking/eventbaseline
 requires: Stata version 18
 ---
 # `eventbaseline` Correct event study after `xthdidregress`
@@ -19,7 +19,12 @@ requires: Stata version 18
 
 The package can be installed with
 ```
-net install eventstudy, from(https://raw.githubusercontent.com/codedthinking/eventstudy/main/)
+net install eventbaseline, from(https://raw.githubusercontent.com/codedthinking/eventbaseline/main/)
+```
+
+If you require a specific version, use
+```
+net install eventbaseline, from(https://github.com/korenmiklos/codedthinking/eventbaseline/raw/v0.6.0/)
 ```
 
 # Options
@@ -117,7 +122,7 @@ Event study relative to atet             Number of obs = 1,850
 # License and Citation
 You are free to use this package under the terms of its [license](LICENSE). If you use it, please the software package in your work:
 
-- Koren, Miklós. 2024. "EVENTBASELINE: Correct Event Study After XTHDIDREGRESS. [software]" Available at https://github.com/codedthinking/eventstudy.
+- Koren, Miklós. 2024. "EVENTBASELINE: Correct Event Study After XTHDIDREGRESS. [software]" Available at https://github.com/codedthinking/eventbaseline.
 
 # References
 - Roth, Jonathan. 2024a. "Interpreting Event-Studies from Recent Difference-in-Differences Methods." Available at https://www.jonathandroth.com/assets/files/HetEventStudies.pdf. Last accessed January 23, 2024.
