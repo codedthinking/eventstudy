@@ -38,7 +38,7 @@
 {marker background}{...}
 {title:Background}
 
-{pstd}{cmd:xthdidregress} returns ATET between {cmd:t} and {cmd:t-1} whenever {cmd:t} is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment. This can lead to misleading event study plots (Roth 2024). The {cmd:eventbaseline} command transforms the coefficients into a correct event study relative to a baseline.{p_end}
+{pstd}{cmd:xthdidregress} returns ATET between {cmd:t} and {cmd:t-1} whenever {cmd:t} is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment. This can lead to misleading event study plots (Roth 2024a). The {cmd:eventbaseline} command transforms the coefficients into a correct event study relative to a baseline.{p_end}
 
 
 {marker remarks}{...}
@@ -47,6 +47,8 @@
 {pstd}The command can only be run after {cmd:xthdidregress}.{p_end}
 
 {pstd}The command also returns, as part of {cmd:e()}, the coefficients and standard errors. See {cmd:ereturn list} after running the command. Typical post-estimation commands can be used, such as {cmd:outreg2} or {cmd:estout}.{p_end}
+
+{pstd}The reported number of observations is also corrected to exclude the treated periods outside the reported event window.{p_end}
 
 {pstd}If the {cmd:generate} option is used, the returned frame contains the following variables:{p_end}
 
@@ -62,58 +64,58 @@
 {marker examples}{...}
 {title:Examples}
 
-{phang2}{cmd}. . use testdata
+{pstd}See {cmd:example.do} and {cmd:example.log} for a full example.{p_end}
 
-. xthdidregress ra (y) (treatment), group(group)
+{phang2}{cmd}. . use "df.dta"
+. replace t = t + 100
+. xtset i t
+. xthdidregress ra (y) (d), group(i)
+note: variable _did_cohort, containing cohort indicators formed by treatment
+      variable d and group variable i, was added to the dataset.
 
-. eventbaseline, pre(3) post(3) baseline(-3) generate(eventstudy)
+<output omitted>
 
-Time variable: time, -3 to 3
+. eventbaseline, pre(5) post(5) baseline(-1) generate(eventstudy_correct)
+
+Time variable: time, -5 to 5
         Delta: 1 unit
 
-Event study relative to -3                 Number of obs = 662
+Event study relative to -1               Number of obs = 1,850
 
 ------------------------------------------------------------------------------
            y |       ATET   Std. err.      z    P>|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-          -3 |          0  (omitted)
-          -2 |   .0927541   .0149854     6.19   0.000     .0633833    .1221249
-          -1 |   .2026121   .0123289    16.43   0.000     .1784478    .2267764
-           0 |   .5125657   .0143483    35.72   0.000     .4844435    .5406879
-           1 |   .6146663   .0158062    38.89   0.000     .5836867     .645646
-           2 |   .7274315   .0196456    37.03   0.000     .6889267    .7659362
-           3 |   .8197896   .0194226    42.21   0.000     .7817219    .8578572
+          -5 |   -2.31541   .2415591    -9.59   0.000    -2.788857   -1.841963
+          -4 |  -1.310102   .2551332    -5.13   0.000    -1.810153   -.8100498
+          -3 |  -1.256003    .284372    -4.42   0.000    -1.813362   -.6986446
+          -2 |  -.4307123   .2619239    -1.64   0.100    -.9440736     .082649
+          -1 |          0  (omitted)
+           0 |   .4105212   .2379038     1.73   0.084    -.0557617    .8768041
+           1 |   .9888228   .2764365     3.58   0.000     .4470172    1.530629
+           2 |   1.859271   .2727555     6.82   0.000      1.32468    2.393862
+           3 |   1.865648   .2840544     6.57   0.000     1.308911    2.422384
+           4 |   2.591579   .2831633     9.15   0.000     2.036589    3.146569
+           5 |   2.923434   .2730864    10.71   0.000     2.388195    3.458674
 ------------------------------------------------------------------------------
 
-. frame eventstudy: list
-
-     +------------------------------+
-     | time    coef   lower   upper |
-     |------------------------------|
-  1. |   -3   0.000   0.000   0.000 |
-  2. |   -2   0.093   0.063   0.122 |
-  3. |   -1   0.203   0.178   0.227 |
-  4. |    0   0.513   0.484   0.541 |
-  5. |    1   0.615   0.584   0.646 |
-     |------------------------------|
-  6. |    2   0.727   0.689   0.766 |
-  7. |    3   0.820   0.782   0.858 |
-     +------------------------------+
-
-. frame eventstudy: tsline upper coef lower
+. frame eventstudy_correct: tsline upper coef lower
 
 
 
-{phang2}{cmd}. . xthdidregress ra (y) (treatment), group(group)
+{phang2}{cmd}. . xthdidregress ra (y) (d), group(i)
+note: variable _did_cohort, containing cohort indicators formed by treatment
+      variable d and group variable i, was added to the dataset.
 
-. eventbaseline, pre(3) post(3) baseline(atet)
+<output omitted>
 
-Event study relative to atet               Number of obs = 662
+. eventbaseline, pre(5) post(5) baseline(atet)
+
+Event study relative to atet             Number of obs = 1,850
 
 ------------------------------------------------------------------------------
            y |       ATET   Std. err.      z    P>|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-        ATET |   .5701579   .0094833    60.12   0.000      .551571    .5887447
+        ATET |   2.835658   .1134013    25.01   0.000     2.613396     3.05792
 ------------------------------------------------------------------------------
 
 
@@ -136,4 +138,5 @@ Event study relative to atet               Number of obs = 662
 {marker references}{...}
 {title:References}
 
-{text}{phang2}Roth, Jonathan. 2024. "Interpreting Event-Studies from Recent Difference-in-Differences Methods." Available at {browse "https://www.jonathandroth.com/assets/files/HetEventStudies.pdf":https://www.jonathandroth.com/assets/files/HetEventStudies.pdf}. Last accessed January 23, 2024.{p_end}
+{text}{phang2}Roth, Jonathan. 2024a. "Interpreting Event-Studies from Recent Difference-in-Differences Methods." Available at {browse "https://www.jonathandroth.com/assets/files/HetEventStudies.pdf":https://www.jonathandroth.com/assets/files/HetEventStudies.pdf}. Last accessed January 23, 2024.{p_end}
+{phang2}Roth, Jonathab. 2024b. "Test Data for >Interpreting Event-Studies from Recent Difference-in-Differences Methods< [data set]." Available at {browse "https://github.com/jonathandroth/HetEventStudies/raw/master/output/df.dta":https://github.com/jonathandroth/HetEventStudies/raw/master/output/df.dta} Last accessed January 23, 2024.{p_end}
