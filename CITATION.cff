@@ -11,5 +11,5 @@ authors:
 identifiers:
   - type: url
     value: 'https://github.com/codedthinking/eventbaseline'
-version: 0.6.1
+version: 0.7.0
 date-released: '2024-01-23'
