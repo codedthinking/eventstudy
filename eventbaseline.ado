@@ -1,6 +1,6 @@
-*! version 0.6.1 23jan2024
+*! version 0.7.0 23jan2024
 program eventbaseline, eclass
-    syntax [, pre(integer 1) post(integer 3) baseline(string) generate(string) level(real 95)]
+    syntax [, pre(integer 1) post(integer 3) baseline(string) generate(string) level(real 95)] [graph]
 	if ("`level'" == "") {
 		local level 95
 	}    
@@ -17,7 +17,7 @@ program eventbaseline, eclass
     local depvar = e(depvar)
     local cohortvar = e(cohortvar)
     local timevar = e(timevar)
-    tempname bad_coef bad_Var Wcum W0 b V Nobs
+    tempname bad_coef bad_Var Wcum W0 b V Nobs coefplot tlabels
 
     tempvar exclude esample
     * exclude observations outside of the event window
@@ -71,6 +71,18 @@ program eventbaseline, eclass
     matrix colname `V' = `colnames'
     matrix rowname `V' = `colnames'
 
+    matrix `coefplot' = J(`K', 4, .)
+    matrix colname `coefplot' = xvar b ll ul
+    local tlabels ""
+    forvalues t = -`pre'/`post' {
+        local tlabels `tlabels' `t'
+        local i = `t' + `pre' + 1
+        matrix `coefplot'[`i', 1] = `t''
+        matrix `coefplot'[`i', 2] = `b'[1, `i']
+        matrix `coefplot'[`i', 3] = `b'[1, `i'] + invnormal((100-`level')/200) * sqrt(`V'[`i', `i'])
+        matrix `coefplot'[`i', 4] = `b'[1, `i'] - invnormal((100-`level')/200) * sqrt(`V'[`i', `i'])
+    }
+
     tempname coef lower upper
     if ("`generate'" != "") {
         capture frame drop `generate'
@@ -96,5 +108,10 @@ program eventbaseline, eclass
 	_coef_table, bmat(e(b)) vmat(e(V)) level(`level') 	///
 		depname(`depvar') coeftitle(ATET)
 
+    if ("`graph'" == "graph") {
+        hetdid_coefplot, mat(`coefplot') title(Event study relative to `baseline') ///
+            ylb(`depvar') xlb("Length of exposure to the treatment") ///
+            yline(0) legend(off) level(`level') yline(0,  extend) ytick(0, add) ylabel(0, add) xlabel(`tlabels')
+    }
 end
 
