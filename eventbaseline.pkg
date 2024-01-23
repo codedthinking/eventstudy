@@ -1,0 +1,23 @@
+
+v 3
+
+d EVENTBASELINE - Correct Event Study After XTHDIDREGRESS
+d
+d Authors: Koren, Miklós (https://koren.mk)
+d Support: 
+d 
+d `eventbaseline` transforms the coefficients estimated by `xthdidregress` into a correct event study relative to a baseline. The reported coefficients are the average treatment effects on the treated (ATT) for each period relative to the baseline. The baseline can be either a period before the treatment or the average of the pre-treatment periods.
+d 
+d For details, see website:
+d https://github.com/codedthinking/eventstudy
+d
+d Requires: Stata version 18
+d
+d Distribution-Date: 20240123
+d
+
+
+f eventstudy.ado
+f eventstudy.sthlp
+f LICENSE
+f testdata.dta

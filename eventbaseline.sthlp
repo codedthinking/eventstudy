@@ -1,17 +1,17 @@
 {smcl}
 
 
-{marker eventstudy-correct-event-study-after-xthdidregress}{...}
-{title:{cmd:eventstudy} Correct event study after {cmd:xthdidregress}}
+{marker eventbaseline-correct-event-study-after-xthdidregress}{...}
+{title:{cmd:eventbaseline} Correct event study after {cmd:xthdidregress}}
 
 
 {marker syntax}{...}
 {title:Syntax}
 
-{text}{phang2}{cmd:eventstudy}, [{bf:pre}(#) {bf:post}(#) {bf:baseline}({it:string}) {bf:generate}({it:name})]{p_end}
+{text}{phang2}{cmd:eventbaseline}, [{bf:pre}(#) {bf:post}(#) {bf:baseline}({it:string}) {bf:generate}({it:name})]{p_end}
 
 
-{pstd}{cmd:eventstudy} transforms the coefficients estimated by {cmd:xthdidregress} into a correct event study relative to a baseline. The reported coefficients are the average treatment effects on the treated (ATT) for each period relative to the baseline. The baseline can be either a period before the treatment or the average of the pre-treatment periods.{p_end}
+{pstd}{cmd:eventbaseline} transforms the coefficients estimated by {cmd:xthdidregress} into a correct event study relative to a baseline. The reported coefficients are the average treatment effects on the treated (ATT) for each period relative to the baseline. The baseline can be either a period before the treatment or the average of the pre-treatment periods.{p_end}
 
 {pstd}The package can be installed with{p_end}
 
@@ -38,7 +38,7 @@
 {marker background}{...}
 {title:Background}
 
-{pstd}{cmd:xthdidregress} returns ATET between {cmd:t} and {cmd:t-1} whenever {cmd:t} is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment. This can lead to misleading event study plots. The {cmd:eventstudy} command transforms the coefficients into a correct event study relative to a baseline.{p_end}
+{pstd}{cmd:xthdidregress} returns ATET between {cmd:t} and {cmd:t-1} whenever {cmd:t} is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment. This can lead to misleading event study plots. The {cmd:eventbaseline} command transforms the coefficients into a correct event study relative to a baseline.{p_end}
 
 
 {marker remarks}{...}
@@ -66,7 +66,7 @@
 
 . xthdidregress ra (y) (treatment), group(group)
 
-. eventstudy, pre(3) post(3) baseline(-3) generate(eventstudy)
+. eventbaseline, pre(3) post(3) baseline(-3) generate(eventstudy)
 
 Time variable: time, -3 to 3
         Delta: 1 unit
@@ -106,7 +106,7 @@ Event study relative to -3                 Number of obs = 662
 
 {phang2}{cmd}. . xthdidregress ra (y) (treatment), group(group)
 
-. eventstudy, pre(3) post(3) baseline(atet)
+. eventbaseline, pre(3) post(3) baseline(atet)
 
 Event study relative to atet               Number of obs = 662
 
@@ -120,13 +120,13 @@ Event study relative to atet               Number of obs = 662
 {marker authors}{...}
 {title:Authors}
 
-{text}{phang2}Miklós Koren (Central European University), {it:maintainer}{p_end}
+{text}{phang2}Miklós Koren (Central European University, {browse "https://koren.mk":https://koren.mk}), {it:maintainer}{p_end}
 
 
 
 {marker license-and-citation}{...}
 {title:License and Citation}
 
-{pstd}You are free to use this package under the terms of its {browse "LICENSE":license}. If you use it, please cite {it:both} the original article and the software package in your work:{p_end}
+{pstd}You are free to use this package under the terms of its {browse "LICENSE":license}. If you use it, please the software package in your work:{p_end}
 
-{text}{phang2}Koren, Miklós. 2024. "EVENTSTUDY: Correct Event Study After XTHDIDREGRESS. [software]" Available at {browse "https://github.com/codedthinking/eventstudy":https://github.com/codedthinking/eventstudy}.{p_end}
+{text}{phang2}Koren, Miklós. 2024. "EVENTBASELINE: Correct Event Study After XTHDIDREGRESS. [software]" Available at {browse "https://github.com/codedthinking/eventstudy":https://github.com/codedthinking/eventstudy}.{p_end}

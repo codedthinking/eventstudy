@@ -1,14 +1,10 @@
 ---
 author: Koren, Miklós (https://koren.mk)
-date: 2024-01-22
-version: 0.5.3
-title: EVENTSTUDY - Correct Event Study After XTHDIDREGRESS
+date: 2024-01-23
+version: 0.6.0
+title: EVENTBASELINE - Correct Event Study After XTHDIDREGRESS
 description: |
-    `eventstudy` transforms the coefficients estimated by `xthdidregress` into a correct
-    event study relative to a baseline. The reported coefficients are the average 
-    treatment effects on the treated (ATT) for each period relative to the baseline. 
-    The baseline can be either a period before the treatment or the average of the 
-    pre-treatment periods.
+    `eventbaseline` transforms the coefficients estimated by `xthdidregress` into a correct event study relative to a baseline. The reported coefficients are the average treatment effects on the treated (ATT) for each period relative to the baseline. The baseline can be either a period before the treatment or the average of the pre-treatment periods.
 url: https://github.com/codedthinking/eventstudy
 requires: Stata version 18
 files: 
@@ -17,13 +13,13 @@ files:
     - LICENSE
     - testdata.dta 
 ---
-# `eventstudy` Correct event study after `xthdidregress`
+# `eventbaseline` Correct event study after `xthdidregress`
 
 # Syntax
 
-- `eventstudy`, [**pre**(#) **post**(#) **baseline**(*string*) **generate**(*name*)]
+- `eventbaseline`, [**pre**(#) **post**(#) **baseline**(*string*) **generate**(*name*)]
 
-`eventstudy` transforms the coefficients estimated by `xthdidregress` into a correct event study relative to a baseline. The reported coefficients are the average treatment effects on the treated (ATT) for each period relative to the baseline. The baseline can be either a period before the treatment or the average of the pre-treatment periods.
+`eventbaseline` transforms the coefficients estimated by `xthdidregress` into a correct event study relative to a baseline. The reported coefficients are the average treatment effects on the treated (ATT) for each period relative to the baseline. The baseline can be either a period before the treatment or the average of the pre-treatment periods.
 
 
 The package can be installed with
@@ -41,7 +37,7 @@ Option | Description
 **generate** (optional) | Name of the frame to store the coefficients and their confidence interval.
 
 # Background
-`xthdidregress` returns ATET between `t` and `t-1` whenever `t` is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment. This can lead to misleading event study plots. The `eventstudy` command transforms the coefficients into a correct event study relative to a baseline.
+`xthdidregress` returns ATET between `t` and `t-1` whenever `t` is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment. This can lead to misleading event study plots. The `eventbaseline` command transforms the coefficients into a correct event study relative to a baseline.
 
 # Remarks
 The command can only be run after `xthdidregress`. 
@@ -62,7 +58,7 @@ The frame is `tsset` by `time`, so `tsline` can be used to plot the event study.
 
 . xthdidregress ra (y) (treatment), group(group)
 
-. eventstudy, pre(3) post(3) baseline(-3) generate(eventstudy)
+. eventbaseline, pre(3) post(3) baseline(-3) generate(eventstudy)
 
 Time variable: time, -3 to 3
         Delta: 1 unit
@@ -104,7 +100,7 @@ Event study relative to -3                 Number of obs = 662
 ```
 . xthdidregress ra (y) (treatment), group(group)
 
-. eventstudy, pre(3) post(3) baseline(atet)
+. eventbaseline, pre(3) post(3) baseline(atet)
 
 Event study relative to atet               Number of obs = 662
 
@@ -118,9 +114,9 @@ Event study relative to atet               Number of obs = 662
 
 
 # Authors
-- Miklós Koren (Central European University), *maintainer*
+- Miklós Koren (Central European University, https://koren.mk), *maintainer*
 
 # License and Citation
-You are free to use this package under the terms of its [license](LICENSE). If you use it, please cite *both* the original article and the software package in your work:
+You are free to use this package under the terms of its [license](LICENSE). If you use it, please the software package in your work:
 
-- Koren, Miklós. 2024. "EVENTSTUDY: Correct Event Study After XTHDIDREGRESS. [software]" Available at https://github.com/codedthinking/eventstudy.
+- Koren, Miklós. 2024. "EVENTBASELINE: Correct Event Study After XTHDIDREGRESS. [software]" Available at https://github.com/codedthinking/eventstudy.

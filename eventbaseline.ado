@@ -1,5 +1,5 @@
-*! version 0.5.3 22jan2024
-program eventstudy, eclass
+*! version 0.6.0 23jan2024
+program eventbaseline, eclass
     syntax [, pre(integer 1) post(integer 3) baseline(string) generate(string) level(real 95)]
 	if ("`level'" == "") {
 		local level 95
