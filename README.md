@@ -37,7 +37,7 @@ Option | Description
 **generate** (optional) | Name of the frame to store the coefficients and their confidence interval.
 
 # Background
-`xthdidregress` returns ATET between `t` and `t-1` whenever `t` is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment. This can lead to misleading event study plots. The `eventbaseline` command transforms the coefficients into a correct event study relative to a baseline.
+`xthdidregress` returns ATET between `t` and `t-1` whenever `t` is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment. This can lead to misleading event study plots (Roth 2024). The `eventbaseline` command transforms the coefficients into a correct event study relative to a baseline.
 
 # Remarks
 The command can only be run after `xthdidregress`. 
@@ -120,3 +120,6 @@ Event study relative to atet               Number of obs = 662
 You are free to use this package under the terms of its [license](LICENSE). If you use it, please the software package in your work:
 
 - Koren, Miklós. 2024. "EVENTBASELINE: Correct Event Study After XTHDIDREGRESS. [software]" Available at https://github.com/codedthinking/eventstudy.
+
+# References
+- Roth, Jonathan. 2024. "Interpreting Event-Studies from Recent Difference-in-Differences Methods." Available at https://www.jonathandroth.com/assets/files/HetEventStudies.pdf. Last accessed January 23, 2024.

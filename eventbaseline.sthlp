@@ -38,7 +38,7 @@
 {marker background}{...}
 {title:Background}
 
-{pstd}{cmd:xthdidregress} returns ATET between {cmd:t} and {cmd:t-1} whenever {cmd:t} is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment. This can lead to misleading event study plots. The {cmd:eventbaseline} command transforms the coefficients into a correct event study relative to a baseline.{p_end}
+{pstd}{cmd:xthdidregress} returns ATET between {cmd:t} and {cmd:t-1} whenever {cmd:t} is before the treatment. That is, pretrends are reported as first differences, whereas actual treatment effects are reported as difference relative to the period before treatment. This can lead to misleading event study plots (Roth 2024). The {cmd:eventbaseline} command transforms the coefficients into a correct event study relative to a baseline.{p_end}
 
 
 {marker remarks}{...}
@@ -130,3 +130,10 @@ Event study relative to atet               Number of obs = 662
 {pstd}You are free to use this package under the terms of its {browse "LICENSE":license}. If you use it, please the software package in your work:{p_end}
 
 {text}{phang2}Koren, Miklós. 2024. "EVENTBASELINE: Correct Event Study After XTHDIDREGRESS. [software]" Available at {browse "https://github.com/codedthinking/eventstudy":https://github.com/codedthinking/eventstudy}.{p_end}
+
+
+
+{marker references}{...}
+{title:References}
+
+{text}{phang2}Roth, Jonathan. 2024. "Interpreting Event-Studies from Recent Difference-in-Differences Methods." Available at {browse "https://www.jonathandroth.com/assets/files/HetEventStudies.pdf":https://www.jonathandroth.com/assets/files/HetEventStudies.pdf}. Last accessed January 23, 2024.{p_end}
