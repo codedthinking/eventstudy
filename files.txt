@@ -1,4 +1,5 @@
 stata.toc
+eventbaseline.pkg
 eventbaseline.ado
 eventbaseline.sthlp
 df.dta

@@ -17,7 +17,11 @@ d Distribution-Date: 20240123
 d
 
 
-f eventstudy.ado
-f eventstudy.sthlp
-f LICENSE
-f testdata.dta
+f stata.toc
+f eventbaseline.pkg
+f eventbaseline.ado
+f eventbaseline.sthlp
+f df.dta
+f example.do
+f eventstudy_kink.png
+f eventstudy_correct.png

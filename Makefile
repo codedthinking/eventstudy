@@ -1,5 +1,5 @@
 FILES := $(shell cat files.txt)
-TARGET := package.zip
+TARGET := eventbaseline.zip
 
 $(TARGET): $(FILES)
 	zip $(TARGET) $(FILES)
