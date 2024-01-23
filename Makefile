@@ -1,4 +1,8 @@
-all: eventbaseline.sthlp eventbaseline.pkg
+FILES := $(shell cat files.txt)
+TARGET := package.zip
+
+$(TARGET): $(FILES)
+	zip $(TARGET) $(FILES)
 eventbaseline.sthlp: README.md smcl.lua
 	pandoc -f gfm -t smcl.lua $< > $@
 smcl.lua:

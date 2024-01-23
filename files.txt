@@ -1,0 +1,7 @@
+stata.toc
+eventbaseline.ado
+eventbaseline.sthlp
+df.dta
+example.do
+eventstudy_kink.png
+eventstudy_correct.png
