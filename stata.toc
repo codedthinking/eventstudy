@@ -1,5 +1,5 @@
 
 v 3
 d Koren, Miklós (https://koren.mk)
-d https://github.com/codedthinking/eventstudy
-p eventstudy EVENTSTUDY - Correct Event Study After XTHDIDREGRESS
+d https://github.com/codedthinking/eventbaseline
+p eventbaseline EVENTBASELINE - Correct Event Study After XTHDIDREGRESS

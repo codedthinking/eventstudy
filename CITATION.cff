@@ -1,6 +1,6 @@
 
 cff-version: 1.2.0
-title: EVENTSTUDY - Correct Event Study After XTHDIDREGRESS
+title: EVENTBASELINE - Correct Event Study After XTHDIDREGRESS
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -10,6 +10,6 @@ authors:
     family-names: 'Koren, Miklós (https://koren.mk)'
 identifiers:
   - type: url
-    value: 'https://github.com/codedthinking/eventstudy'
-version: 0.5.3
-date-released: '2024-01-22'
+    value: 'https://github.com/codedthinking/eventbaseline'
+version: 0.7.0
+date-released: '2024-01-23'

@@ -76,6 +76,9 @@ if __name__ == '__main__':
     command = sys.argv[2]
     config['command'] = command
     config['stata_date'] = stata_date(config['date'])
+    with open('files.txt', 'rt') as f:
+        files = f.readlines()
+    config['files'] = [f.strip() for f in files]
     with open(f'{command}.ado', 'rt') as f:
         adotext = f.read()
     with open(f'{command}.pkg', 'wt') as f:
